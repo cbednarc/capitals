@@ -1,0 +1,23 @@
+---
+title: "Capitals"
+author: "cbednarc"
+date: "July 18, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+```
+
+```{r}
+capitals = read.table("state_capitals_ll.txt")
+colnames(capitals) = c("State","lat","lng")
+library(leaflet)
+my_map = leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng=capitals$lng, lat=capitals$lat, clusterOptions=markerClusterOptions(),popup=capitals$State)
+my_map
+```
+
+
+###### Data from https://people.sc.fsu.edu/~jburkardt/datasets/states/states.html
